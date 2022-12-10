@@ -1,0 +1,84 @@
+{
+  "name": "tigray-pulse-app",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ui/tigray-pulse-app/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/ui/tigray-pulse-app",
+        "index": "apps/ui/tigray-pulse-app/src/index.html",
+        "baseHref": "/",
+        "main": "apps/ui/tigray-pulse-app/src/main.tsx",
+        "polyfills": "apps/ui/tigray-pulse-app/src/polyfills.ts",
+        "tsConfig": "apps/ui/tigray-pulse-app/tsconfig.app.json",
+        "assets": [
+          "apps/ui/tigray-pulse-app/src/favicon.ico",
+          "apps/ui/tigray-pulse-app/src/assets"
+        ],
+        "styles": ["apps/ui/tigray-pulse-app/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/ui/tigray-pulse-app/src/environments/environment.ts",
+              "with": "apps/ui/tigray-pulse-app/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "tigray-pulse-app:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "tigray-pulse-app:build:development"
+        },
+        "production": {
+          "buildTarget": "tigray-pulse-app:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/ui/tigray-pulse-app/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/ui/tigray-pulse-app/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
