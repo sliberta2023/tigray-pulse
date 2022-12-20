@@ -3,13 +3,11 @@ import styles from './app.module.scss';
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
+import LandingPage from './components/landing-page';
 
 export function App() {
   return (
     <>
-      <NxWelcome title="tigray-pulse-app" />
-      <div />
-
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}
       {/* Feel free to move and update them to fit your needs */}
@@ -30,10 +28,7 @@ export function App() {
         <Route
           path="/"
           element={
-            <div>
-              This is the generated root route.{' '}
-              <Link to="/page-2">Click here for page 2.</Link>
-            </div>
+            <LandingPage />
           }
         />
         <Route
