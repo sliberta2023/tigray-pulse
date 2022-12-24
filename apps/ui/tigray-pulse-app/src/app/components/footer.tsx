@@ -50,7 +50,7 @@ function Footer() {
           </svg>
         </a>
       </div>
-      Bootstraped by vite, 2022
+      <p> Tigray prevails! &copy; 2022 </p>
     </div>
   );
 }

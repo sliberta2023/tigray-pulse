@@ -2,14 +2,18 @@ import MainPage from './main-page';
 import Navbar from './navbar';
 import Header from './header';
 import Footer from './footer';
+import ContentPage from './content-page';
 
 function LandingPage() {
   return (
-    <MainPage>
+    <>
       <Navbar />
       <Header />
+      <MainPage>
+        <ContentPage />
+      </MainPage>
       <Footer />
-    </MainPage>
+    </>
   );
 }
 

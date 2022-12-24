@@ -5,7 +5,7 @@ function Header() {
         We are launching <span className="font-extrabold">soon!</span>
       </h1>
       <p className="text-sm md:text-lg py-5 text-gray-500 dark:text-white">
-        Subscribe and get motified
+        Subscribe and get notified
       </p>
 
       {/* <img
