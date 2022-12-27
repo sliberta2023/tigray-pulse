@@ -1,45 +1,27 @@
-import Card, { CardData } from "./card";
+import { Component } from 'react';
 
-const tweets: CardData[] = [
-    {
-        title: 'Noteworthy technology acquisitions 2021',
-        message: 'Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.',
-        imgSrc: '/assets/image.jpeg',
-        imgAlt: 'sample image from the internet',
-        linkTitle: 'go to the source',
-        linkAction: (e) => console.log('Go to the source to read the details...')
-    },
-    {
-        title: 'Second noteworthy technology acquisitions 2021',
-        message: 'Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.',
-        imgSrc: '/assets/image.jpeg',
-        imgAlt: 'sample image from the internet',
-        linkTitle: 'go to the source',
-        linkAction: (e) => console.log('Go to the source to read the details...')
-    },
-    {
-        title: 'Third noteworthy technology acquisitions 2021',
-        message: 'Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.',
-        imgSrc: '/assets/image.jpeg',
-        imgAlt: 'sample image from the internet',
-        linkTitle: 'go to the source',
-        linkAction: (e) => console.log('Go to the source to read the details...')
+import CardComponent, { CardData } from './card';
+
+const { tweets } = require('../../assets/mock-data/tweets.js');
+
+class ContentPage extends Component {
+
+    render() {
+
+        return (
+            <div className='flex flex-wrap'>
+                {
+                    tweets.map((tweet: CardData, index: number) => {
+                        return (
+                            <div key={`${tweet.title}_${index}`} className='m-5'>
+                                <CardComponent>{tweet}</CardComponent>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        );
     }
-];
-function ContentPage() {
-    return (
-        <div className='flex'>
-            {
-                tweets.map((tweet, index) => {
-                    return (
-                        <div key={`${tweet.title}_${index}`} className='m-5'>
-                            <Card>{tweet}</Card>
-                        </div>
-                    )
-                })
-            }
-        </div>
-    );
 }
 
 export default ContentPage;

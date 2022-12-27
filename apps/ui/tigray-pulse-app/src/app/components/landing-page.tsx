@@ -1,20 +1,25 @@
-import MainPage from './main-page';
-import Navbar from './navbar';
-import Header from './header';
-import Footer from './footer';
-import ContentPage from './content-page';
+import { Component } from 'react';
 
-function LandingPage() {
-  return (
-    <>
-      <Navbar />
-      <Header />
-      <MainPage>
-        <ContentPage />
-      </MainPage>
-      <Footer />
-    </>
-  );
+import MainPage from './main-page';
+import ContentPage from './content-page';
+import HeaderComponent from './header';
+import FooterComponent from './footer';
+import NavbarComponent from './navbar';
+
+class LandingPage extends Component {
+    render() {
+        return (
+          <>
+            <NavbarComponent />
+            <HeaderComponent />
+            <MainPage>
+              <ContentPage />
+            </MainPage>
+            <FooterComponent />
+          </>
+        );
+    }
+
 }
 
 export default LandingPage;
