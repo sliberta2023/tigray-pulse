@@ -1,8 +1,9 @@
 import { Component } from 'react';
 
 import CardComponent, { CardData } from './card';
+import InstagramPostComponent from './instagram-post';
 
-const { tweets } = require('../../assets/mock-data/tweets.js');
+const { tweetsReal } = require('../../assets/mock-data/tweets.js');
 
 class ContentPage extends Component {
 
@@ -11,13 +12,16 @@ class ContentPage extends Component {
         return (
             <div className='flex flex-wrap'>
                 {
-                    tweets.map((tweet: CardData, index: number) => {
+                    tweetsReal.map((tweet: CardData) => {
                         return (
-                            <div key={`${tweet.title}_${index}`} className='m-5'>
-                                <CardComponent>{tweet}</CardComponent>
+                            <div key={`${tweet.id}`} className='m-5'>
+                                <CardComponent key={`card_${tweet.id}`}>{tweet}</CardComponent>
                             </div>
                         )
                     })
+                }
+                {
+                    <InstagramPostComponent />
                 }
             </div>
         );

@@ -10,6 +10,7 @@ export class TwitterClientController {
         try {
             return await this.twitterService.getRelatedTweets(query);
         } catch(error) {
+            Logger.error(error?.message);
             return 'There is some error in fetching tweets.'
         }
     }

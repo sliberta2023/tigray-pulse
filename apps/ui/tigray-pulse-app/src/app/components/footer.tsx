@@ -53,7 +53,7 @@ class FooterComponent extends Component {
                 </svg>
               </a>
             </div>
-            <p> Tigray prevails! &copy; 2022 </p>
+            <p> Tigray prevails! &copy; 2023 </p>
           </div>
         );
     }
