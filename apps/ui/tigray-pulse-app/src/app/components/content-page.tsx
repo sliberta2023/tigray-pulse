@@ -20,9 +20,6 @@ class ContentPage extends Component {
                         )
                     })
                 }
-                {
-                    <InstagramPostComponent />
-                }
             </div>
         );
     }

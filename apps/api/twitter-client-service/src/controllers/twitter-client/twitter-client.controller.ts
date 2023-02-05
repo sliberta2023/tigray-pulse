@@ -8,7 +8,9 @@ export class TwitterClientController {
     @Get('search')
     async getTweetsByContent(@Query('q') query: string) {
         try {
-            return await this.twitterService.getRelatedTweets(query);
+            const response = await this.twitterService.getRelatedTweets(query);
+            this.twitterService.saveTweetsToDB(response);
+            return response;
         } catch(error) {
             Logger.error(error?.message);
             return 'There is some error in fetching tweets.'
