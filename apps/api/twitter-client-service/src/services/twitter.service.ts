@@ -13,7 +13,11 @@ export class TwitterService {
     constructor(private readonly httpService: HttpService,
         private readonly twitterRepo: TwitterRepository) {}
 
-    async getRelatedTweets(searchTerm: string, limit: number = 100): Promise<CreateTweetDto[]> {
+        async getTweetsFromDB(searchTerm: string, limit: number = 100): Promise<any[]> {
+            return this.twitterRepo.searchByText(searchTerm, limit);
+        }
+        
+        async getTweetsFromTwitter(searchTerm: string, limit: number = 100): Promise<CreateTweetDto[]> {
         try {
             const tokenStr = process.env.TOKEN;
             const queryStr = `${searchTerm} -is:retweet`;

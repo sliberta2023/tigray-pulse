@@ -1,24 +1,31 @@
 import { Component } from 'react';
 
 import CardComponent, { CardData } from './card';
-import InstagramPostComponent from './instagram-post';
 
-const { tweetsReal } = require('../../assets/mock-data/tweets.js');
+type PropsType = {
+    tweets: CardData[]
+}
 
-class ContentPage extends Component {
+class ContentPage extends Component<PropsType> {
+    constructor(props: PropsType) {
+        super(props);
+    }
 
     render() {
-
+        console.log({tweets: this.props.tweets});
         return (
-            <div className='flex flex-wrap'>
+            <div className='flex flex-wrap justify-center items-center'>
                 {
-                    tweetsReal.map((tweet: CardData) => {
-                        return (
-                            <div key={`${tweet.id}`} className='m-5'>
-                                <CardComponent key={`card_${tweet.id}`}>{tweet}</CardComponent>
-                            </div>
-                        )
-                    })
+                    this.props.tweets.length > 0 ?
+                        this.props.tweets.map((tweet: CardData) => {
+                            return (
+                                <div key={`${tweet.id}`} className='m-5'>
+                                    <CardComponent key={`card_${tweet.id}`}>{tweet}</CardComponent>
+                                </div>
+                            )
+                        })
+                        :
+                        <p className='font-bold'> There are no tweets matching your search criteria.</p>
                 }
             </div>
         );

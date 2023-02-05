@@ -15,6 +15,14 @@ export class TwitterRepository {
         return this.tweetModel.find();
     }
 
+    async searchByText(searchText: string, limit = 20): Promise<TweetDocument[]> {
+        return this.tweetModel.find({
+            text: { $regex: searchText || "", $options: 'i'}
+        })
+        .sort({likeCount: -1, retweetCount: -1, replyCount: -1})
+        .limit(limit);
+    }
+
     async createTweet(dto: CreateTweetDto): Promise<TweetDocument> {
         const newTweet = await new this.tweetModel(dto);
         return newTweet.save();

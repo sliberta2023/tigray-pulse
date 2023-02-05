@@ -6,9 +6,20 @@ export class TwitterClientController {
     constructor(private readonly twitterService: TwitterService) {}
 
     @Get('search')
-    async getTweetsByContent(@Query('q') query: string) {
+    async searchDB(@Query('q') query: string) {
         try {
-            const response = await this.twitterService.getRelatedTweets(query);
+            const response = await this.twitterService.getTweetsFromDB(query, 20);
+            return response;
+        } catch(error) {
+            Logger.error(error?.message);
+            return 'There is some error in fetching tweets.'
+        }
+    }
+
+    @Get('fetch')
+    async fetchTweetsByContent(@Query('q') query: string) {
+        try {
+            const response = await this.twitterService.getTweetsFromTwitter(query);
             this.twitterService.saveTweetsToDB(response);
             return response;
         } catch(error) {
