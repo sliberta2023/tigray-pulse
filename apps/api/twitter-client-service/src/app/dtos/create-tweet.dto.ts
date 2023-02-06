@@ -1,6 +1,10 @@
 import { IsNotEmpty, IsNumber, IsString}  from 'class-validator';
+import { Date } from 'mongoose';
 
 export class CreateTweetDto {
+    @IsNotEmpty()
+    readonly createdAt: Date;
+
     @IsNotEmpty()
     @IsString()
     readonly id: string;

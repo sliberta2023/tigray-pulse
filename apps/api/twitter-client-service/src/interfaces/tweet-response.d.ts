@@ -1,8 +1,11 @@
+import { Date } from "mongoose";
+
 export interface TweetResponse {
     data: Tweet[];
 }
 
 export interface Tweet {
+    created_at: Date;
     id: string;
     text: string;
     public_metrics?: TweetPublicMetrics;

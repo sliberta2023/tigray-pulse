@@ -14,9 +14,9 @@ type PropsType = {
       tweets: []
     }
 
-    fetchTweets = async (searchText: string = "") => {
+    fetchTweets = async (searchText: string = "", limit: number = 100) => {
       try {
-        const { data } = await axios.get(`${API_URL}?q=${searchText}`);
+        const { data } = await axios.get(`${API_URL}?q=${searchText}&limit=${limit}`);
         console.log('Fetching from DB...');
         if (Array.isArray(data)) {
           this.setState({tweets: [...data]});
@@ -34,12 +34,8 @@ type PropsType = {
     }
 
     async componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any): Promise<void> {
-      console.log('Inside componentDidUpdate of MainPage...');
-      console.log({prevProps});
-      console.log({currentSearchText: this.props.searchText});  
       if (this.props.searchText !== prevProps.searchText) {
-          console.log({searchText: this.props.searchText});
-          await this.fetchTweets(this.props.searchText)
+          await this.fetchTweets(this.props.searchText, 20)
         }
     }
 

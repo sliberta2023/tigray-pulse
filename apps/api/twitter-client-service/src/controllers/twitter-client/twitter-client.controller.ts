@@ -6,9 +6,9 @@ export class TwitterClientController {
     constructor(private readonly twitterService: TwitterService) {}
 
     @Get('search')
-    async searchDB(@Query('q') query: string) {
+    async searchDB(@Query('q') query: string, @Query('limit') limit: number) {
         try {
-            const response = await this.twitterService.getTweetsFromDB(query, 20);
+            const response = await this.twitterService.getTweetsFromDB(query, limit);
             return response;
         } catch(error) {
             Logger.error(error?.message);

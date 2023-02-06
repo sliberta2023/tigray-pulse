@@ -12,7 +12,6 @@ class ContentPage extends Component<PropsType> {
     }
 
     render() {
-        console.log({tweets: this.props.tweets});
         return (
             <div className='flex flex-wrap justify-center items-center'>
                 {

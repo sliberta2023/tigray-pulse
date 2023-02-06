@@ -1,5 +1,4 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { Observable } from "rxjs";
 import { Model } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
 import { TweetDocument } from "../../mongodb/schemas/tweet-schema";
@@ -15,10 +14,18 @@ export class TwitterRepository {
         return this.tweetModel.find();
     }
 
+    /**
+     * Search among today's tweets, otherwise the retured tweets would be a lot
+     * @param searchText 
+     * @param limit 
+     * @returns 
+     */
     async searchByText(searchText: string, limit = 20): Promise<TweetDocument[]> {
+        const startOfTheDay = new Date().setUTCHours(0, 0, 0, 0);
         return this.tweetModel.find({
             text: { $regex: searchText || "", $options: 'i'}
         })
+        .where({createdAt: {$match: {date: {$gte: startOfTheDay}}}})
         .sort({likeCount: -1, retweetCount: -1, replyCount: -1})
         .limit(limit);
     }

@@ -3,7 +3,6 @@ import { HttpService } from '@nestjs/axios';
 import { AxiosError } from 'axios';
 import { firstValueFrom } from 'rxjs';
 import { Tweet, TweetResponse } from '../interfaces/tweet-response';
-import { TweetLight } from '../interfaces/tweet-light';
 import { TwitterRepository } from '../app/repositories/twitter.respository';
 import { CreateTweetDto } from '../app/dtos/create-tweet.dto';
 
@@ -23,7 +22,7 @@ export class TwitterService {
             const queryStr = `${searchTerm} -is:retweet`;
             Logger.log({tokenStr});
             const baseUrl = 'https://api.twitter.com/2/tweets/search/recent';
-            const url = `${baseUrl}?query=${queryStr}&tweet.fields=public_metrics&max_results=${limit}`;
+            const url = `${baseUrl}?query=${queryStr}&tweet.fields=public_metrics,created_at&max_results=${limit}`;
             const headers = {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${tokenStr}`
@@ -37,8 +36,10 @@ export class TwitterService {
     }
 
     formatTweetResponse(tweets: Tweet[]): CreateTweetDto[] {
+        console.log({firstTweet: tweets[0]});
         return tweets?.map(tweet => {
             return {
+                createdAt: tweet.created_at,
                 id: tweet.id,
                 text: tweet.text,
                 likeCount: tweet.public_metrics.like_count,

@@ -2,17 +2,15 @@ import { HttpModule } from '@nestjs/axios';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Model } from 'mongoose';
 import { getModelToken } from '@nestjs/mongoose';
-import { TwitterRepository } from '../app/repositories/twitter.respository';
-import { TwitterService } from './twitter.service';
+import { TwitterRepository } from './twitter.respository';
 
-describe('TwitterService', () => {
-  let service: TwitterService;
+describe('TwitterRepository', () => {
+  let service: TwitterRepository;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [HttpModule],
       providers: [
-        TwitterService,
         TwitterRepository,
         {
           provide: getModelToken('Tweet'),
@@ -21,7 +19,7 @@ describe('TwitterService', () => {
       ]
     }).compile();
 
-    service = module.get<TwitterService>(TwitterService);
+    service = module.get<TwitterRepository>(TwitterRepository);
   });
 
   it('should be defined', () => {
