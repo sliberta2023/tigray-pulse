@@ -2,7 +2,12 @@
   "name": "tigray-pulse",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "install-npx": "npm i -g npx",
+    "build-ui": "npx nx run tigray-pulse-app:build:production",
+    "serve-api": "npx nx run twitter-client-service:build:production",
+    "deploy": "npm run install-npx && npm run serve-api && npm run build-ui"
+  },
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.7.3",
@@ -19,10 +24,11 @@
     "@nestjs/mapped-types": "^1.2.0",
     "@nestjs/mongoose": "^9.2.1",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/serve-static": "^3.0.0",
     "axios": "^1.2.1",
+    "body-parser": "^1.20.1",
     "bootstrap": "^5.2.3",
     "class-transformer": "^0.5.1",
-    "class-validator": "^0.14.0",
     "core-js": "^3.6.5",
     "flowbite": "^1.5.5",
     "flowbite-react": "^0.3.7",
