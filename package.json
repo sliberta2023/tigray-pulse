@@ -1,12 +1,13 @@
 {
   "name": "tigray-pulse",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "build-api": "npx nx run twitter-client-service:build:production",
     "build-ui": "npx nx run tigray-pulse-app:build:production",
     "serve-api": "npx nx run twitter-client-service:serve:production",
-    "deploy": "npm install && npm run build-api && npm run build-ui && npm run serve-api"
+    "deploy": "npm install && npm run build-api && npm run build-ui && npm run serve-api",
+    "start": "npm run deploy"
   },
   "private": true,
   "dependencies": {
