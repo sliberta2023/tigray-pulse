@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ServeStaticModule } from '@nestjs/serve-static';
@@ -10,10 +11,21 @@ import { AppService } from './app.service';
 import { TweetSchema } from '../mongodb/schemas/tweet-schema';
 import { TwitterRepository } from './repositories/twitter.respository';
 
+const getDbURL = async (configService: ConfigService) => ({
+    uri: configService.get('DB_URL'),
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     HttpModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/twitter'),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: getDbURL,
+      inject: [ConfigService]
+    }),
     MongooseModule.forFeature([{name: 'Tweet', schema: TweetSchema}]),
     ServeStaticModule.forRoot({
       rootPath: __dirname,
