@@ -25,7 +25,7 @@ export class TwitterRepository {
         return this.tweetModel.find({
             text: { $regex: searchText || "", $options: 'i'}
         })
-        .where({createdAt: {$match: {date: {$gte: startOfTheDay}}}})
+        .where({createdAt: {$gte: startOfTheDay}})
         .sort({likeCount: -1, retweetCount: -1, replyCount: -1})
         .limit(limit);
     }

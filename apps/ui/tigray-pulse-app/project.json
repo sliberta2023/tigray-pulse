@@ -10,7 +10,7 @@
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
-        "outputPath": "dist/apps/ui/tigray-pulse-app",
+        "outputPath": "dist/apps/api/twitter-client-service/",
         "index": "apps/ui/tigray-pulse-app/src/index.html",
         "baseHref": "/",
         "main": "apps/ui/tigray-pulse-app/src/main.tsx",
@@ -43,7 +43,10 @@
           "sourceMap": false,
           "namedChunks": false,
           "extractLicenses": true,
-          "vendorChunk": false
+          "vendorChunk": false,
+          "options": {
+            "outputPath": "dist/apps/api/twitter-client-service/"
+          }
         }
       }
     },

@@ -6,6 +6,9 @@ export type TweetDocument = HydratedDocument<Tweet>;
 @Schema()
 export class Tweet {
     @Prop()
+    createdAt: Date;
+
+    @Prop()
     id: String;
 
     @Prop()
