@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "install-npx": "npm i -g npx",
+    "build-api": "npx nx run twitter-client-service:build:production",
     "build-ui": "npx nx run tigray-pulse-app:build:production",
-    "serve-api": "npx nx run twitter-client-service:build:production",
-    "deploy": "npm run install-npx && npm run serve-api && npm run build-ui"
+    "serve-api": "npx nx run twitter-client-service:serve:production",
+    "deploy": "npm install && npm run build-api && npm run build-ui && npm run serve-api"
   },
   "private": true,
   "dependencies": {
