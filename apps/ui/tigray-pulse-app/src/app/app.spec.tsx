@@ -21,7 +21,7 @@ describe('App', () => {
         <App />
       </BrowserRouter>
     );
-
-    expect(getByText(/Welcome tigray-pulse-app/gi)).toBeTruthy();
+      console.log({getByText});
+    expect(getByText(/More features to come/gi)).toBeTruthy();
   });
 });
